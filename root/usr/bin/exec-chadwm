@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd ~
+
+~/.config/arto-chadwm/scripts/run.sh 
