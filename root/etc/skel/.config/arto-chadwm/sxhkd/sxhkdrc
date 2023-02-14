@@ -58,9 +58,9 @@ super + F12
 # SUPER + ... KEYS
 #################################################################
 
-#Atom
+#sublime-text
 super + e
-    atom
+    subl
 
 #Browser
 super + w
@@ -308,11 +308,11 @@ ctrl + shift + Escape
 
 #Scrot
 Print
-    scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
+    flameshot
 
 #screeenshooter
 ctrl + Print
-     xfce4-screenshooter
+     flameshot
 
 #Gnome-Screenshot
 ctrl + shift + Print

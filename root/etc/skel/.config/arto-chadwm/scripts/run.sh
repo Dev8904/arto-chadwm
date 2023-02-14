@@ -11,7 +11,7 @@ function run {
   fi
 }
 #run "dex $HOME/.config/autostart/artolinux-welcome-app.desktop"
-run xrandr --output Virtual1 --primary --mode 2560x1600 --pos 0x0 --rotate normal --output Virtual2 --off --output Virtual3 --off --output Virtual4 --off --output Virtual5 --off --output Virtual6 --off --output Virtual7 --off --output Virtual8 --off
+#run xrandr --output Virtual1 --primary --mode 2560x1600 --pos 0x0 --rotate normal --output Virtual2 --off --output Virtual3 --off --output Virtual4 --off --output Virtual5 --off --output Virtual6 --off --output Virtual7 --off --output Virtual8 --off
 #run "xrandr --output VGA-1 --primary --mode 1360x768 --pos 0x0 --rotate normal"
 #run "xrandr --output HDMI2 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off"
 #run xrandr --output eDP-1 --primary --mode 1368x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
@@ -33,8 +33,9 @@ picom -b  --config ~/.config/arto-chadwm/picom/picom.conf &
 run "numlockx on"
 run "volumeicon"
 sxhkd -c ~/.config/arto-chadwm/sxhkd/sxhkdrc &
+run "flameshot"
 #run "nitrogen --restore"
-run "conky -c $HOME/.config/arto-chadwm/conky/system-overview"
+#run "conky -c $HOME/.config/arto-chadwm/conky/system-overview"
 #you can set wallpapers in themes as well
 feh --bg-fill /usr/share/backgrounds/archlinux/arch-wallpaper.jpg &
 feh --bg-fill /usr/share/backgrounds/artolinux/arto-wallpaper.jpg &
