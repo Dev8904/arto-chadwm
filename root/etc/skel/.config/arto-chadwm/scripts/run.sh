@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #xrdb merge ~/.Xresources 
-#xbacklight -set 10 &
+xbacklight -set 4 
 #xset r rate 200 50 &
 
 function run {
