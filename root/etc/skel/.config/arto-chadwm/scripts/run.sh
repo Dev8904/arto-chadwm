@@ -32,6 +32,7 @@ run "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 picom -b  --config ~/.config/arto-chadwm/picom/picom.conf &
 run "numlockx on"
 run "volumeicon"
+emacs --daemon
 #run "flameshot"
 #run "nitrogen --restore"
 #run "conky -c $HOME/.config/arto-chadwm/conky/system-overview"
