@@ -26,7 +26,7 @@ pkg_updates() {
 }
 
 battery() {
-  get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
+  get_capacity="$(cat /sys/class/power_supply/BAT0/capacity)"
   printf "^c$blue^   $get_capacity"
 }
 
@@ -52,10 +52,28 @@ clock() {
 	printf "^c$black^^b$blue^ $(date '+%d/%m/%y %H:%M')  "
 }
 
+
+dwm_audio () {
+  STATUS=$(amixer sget Master | tail -n1 | sed -r "s/.*\[(.*)\]/\1/")
+  VOL=$(amixer get Master | tail -n1 | sed -r "s/.*\[(.*)%\].*/\1/")
+  if [ "$STATUS" = "off" ]; then
+    printf "🔇"
+  else
+    #removed this line becuase it may get confusing
+    if [ "$VOL" -gt 0 ] && [ "$VOL" -le 33 ]; then
+      printf "🔈 %s%%" "$VOL"
+    elif [ "$VOL" -gt 33 ] && [ "$VOL" -le 66 ]; then
+      printf "🔉 %s%%" "$VOL"
+    else
+      printf "🔊 %s%%" "$VOL"
+    fi
+  fi
+}
+
 while true; do
 
   [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && updates=$(pkg_updates)
   interval=$((interval + 1))
 
-  sleep 2 && xsetroot -name "$updates $(battery) $(brightness) $(cpu) $(mem) $(wlan) $(clock)"
+  sleep 2 && xsetroot -name "$updates $(dwm_audio) $(battery) $(brightness) $(cpu) $(mem) $(wlan) $(clock)"
 done

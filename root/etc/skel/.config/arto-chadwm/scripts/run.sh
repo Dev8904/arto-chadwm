@@ -32,13 +32,12 @@ run "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 picom -b  --config ~/.config/arto-chadwm/picom/picom.conf &
 run "numlockx on"
 run "volumeicon"
-sxhkd -c ~/.config/arto-chadwm/sxhkd/sxhkdrc &
-run "flameshot"
+#run "flameshot"
 #run "nitrogen --restore"
 #run "conky -c $HOME/.config/arto-chadwm/conky/system-overview"
 #you can set wallpapers in themes as well
-feh --bg-fill /usr/share/backgrounds/archlinux/arch-wallpaper.jpg &
-feh --bg-fill /usr/share/backgrounds/artolinux/arto-wallpaper.jpg &
+feh --bg-fill /usr/share/backgrounds/wallpaper.jpg &
+#feh --bg-fill /usr/share/backgrounds/artolinux/arto-wallpaper.jpg &
 #feh --randomize --bg-fill /home/erik/Insync/Apps/Wallhaven/*
 #feh --bg-fill ~/.config/arto-chadwm/wallpaper/chadwm.jpg &
 
