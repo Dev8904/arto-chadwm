@@ -198,7 +198,7 @@ static Key keys[] = {
    
     // launch applications
     { MODKEY,                           XK_t,   spawn,       {.v = termcmd}},
-    { MODKEY|ControlMask,               XK_f,   spawn,       {.v = thunarcmd}},
+    { MODKEY|ShiftMask,               XK_f,   spawn,       {.v = thunarcmd}},
     { MODKEY,                           XK_e,   spawn,       {.v = emacscmd}},
     { MODKEY,                           XK_w,   spawn,       {.v = browser}},
     { MODKEY,                           XK_x,   spawn,       SHCMD("archlinux-logout")},
@@ -230,7 +230,7 @@ static Key keys[] = {
     { MODKEY,                           XK_j,       focusstack,     {.i = +1 } },
     { MODKEY,                           XK_k,       focusstack,     {.i = -1 } },
     { MODKEY,                           XK_i,       incnmaster,     {.i = +1 } },
-    { MODKEY,                           XK_d,       incnmaster,     {.i = -1 } },
+    { MODKEY,                           XK_g,       incnmaster,     {.i = -1 } },
 
     // shift view
     { MODKEY,                           XK_Left,    shiftview,      {.i = -1 } },
@@ -275,7 +275,7 @@ static Key keys[] = {
 
     // layout
     { MODKEY,                           XK_y,       setlayout,      {.v = &layouts[0]} },
-    { MODKEY|ShiftMask,                 XK_f,       setlayout,      {.v = &layouts[1]} },
+    { MODKEY|ShiftMask,                 XK_y,       setlayout,      {.v = &layouts[1]} },
     { MODKEY|ControlMask,                           XK_m,       setlayout,      {.v = &layouts[2]} },
     { MODKEY|ControlMask,               XK_g,       setlayout,      {.v = &layouts[10]} },
     { MODKEY|ControlMask|ShiftMask,     XK_t,       setlayout,      {.v = &layouts[13]} },
