@@ -24,6 +24,11 @@ move_files()
     local dest="$1"
     shift  # Remove the destination from the arguments
 
+    # Check if destination directory exists; create it if not
+    if [[ ! -d "$dest" ]]; then
+        mkdir -p "$dest"
+    fi
+
     # Remaining arguments are the source files/directories
     for src in "$@"; do
         # Determine whether to use sudo based on the destination path
