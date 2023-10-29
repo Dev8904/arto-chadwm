@@ -54,7 +54,7 @@ done
 sleep 5
 echo "Done. Installing..."
 
-cd $HOME/.config/arto-chadwm/chadwm/
+cd "$HOME/.config/arto-chadwm/chadwm/"
 sudo make install
 
 echo "Dwm Install finished."
