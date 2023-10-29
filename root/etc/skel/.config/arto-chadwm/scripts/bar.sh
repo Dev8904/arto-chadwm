@@ -6,7 +6,7 @@
 interval=0
 
 # load colors
-. ~/.config/arto-chadwm/scripts/bar_themes/crimson
+. ~/.config/arto-chadwm/scripts/bar_themes/starlight
 
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)

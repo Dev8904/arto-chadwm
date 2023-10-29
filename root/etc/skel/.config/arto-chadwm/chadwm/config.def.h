@@ -35,8 +35,10 @@ static const int colorfultag        = 1;        /* 0 means use SchemeSel for sel
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
-static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
-static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
+{ 0,                            0x1008ff02, spawn,         SHCMD ("xbacklight -inc 10")},
+{ 0,                            0x1008ff03, spawn,         SHCMD ("xbacklight -dec 10")},
+//static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
+//static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
 static const int new_window_attach_on_end = 0; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
 #define ICONSIZE 20   /* icon size */
 #define ICONSPACING 8 /* space between icon and title */
@@ -44,8 +46,9 @@ static const int new_window_attach_on_end = 0; /*  1 means the new window will a
 static const char *fonts[]          = {"JetBrainsMono Nerd Font:style:medium:size=14"};
 
 // theme
+#include "themes/skylight.h"
 //#include "themes/onedark.h"
-#include "themes/crimson.h"
+//#include "themes/crimson.h"
 //#include "themes/catppuccin.h"
 //#include "themes/nord.h"
 //#include "themes/gruvchad.h"
@@ -82,7 +85,7 @@ static char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" }
 //static char *tags[] = { "Web", "Chat", "Edit", "Meld", "Vb", "Mail", "Video", "Image", "Files" };
 //static char *tags[] = {"一", "二", "三", "四", "五", "六", "七", "八", "九"};
 
-static const char* franz[] = { "franz", "open" , "franz", NULL };
+static const char* thunderbird[] = { "thunderbird", "open" , "franz", NULL };
 static const char* discord[] = { "discord", "open" , "discord", NULL };
 static const char* code[] = { "code", "open" , "code", NULL };
 static const char* mintstick[] = { "mintstick", "-m", "iso", NULL};
@@ -90,7 +93,7 @@ static const char* pavucontrol[] = { "pavucontrol", NULL };
 
 static const Launcher launchers[] = {
     /* command     name to display */
-    { franz,           "數" },
+    { thunderbird,           "數" },
     { discord,       "ﱲ" },
     { code,      "" },
     { mintstick,     "虜" },
@@ -160,10 +163,12 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *termcmd[]  = { TERMINAL, NULL };
-static const char *rofi[] = {"rofi", "-no-config", "-no-lazy-grab", "-show", "drun", "-modi", "drun", "-theme", "~/.config/arto-chadwm/rofi/launcher2.rasi", NULL};
-static const char *xi[] = {"brightnessctl", "set", "+5%", NULL};
-static const char *xd[] = {"brightnessctl", "set", "5%-", NULL};
-static const char *browser[] = {"librewolf", NULL}; 
+static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+//static const char *rofi[] = {"rofi", "-no-config", "-no-lazy-grab", "-show", "drun", "-modi", "drun", "-theme", "~/.config/arto-chadwm/rofi/launcher2.rasi", NULL};
+//static const char *xi[] = {"brightnessctl", "set", "+5%", NULL};
+//static const char *xd[] = {"brightnessctl", "set", "5%-", NULL};
+static const char *browser[] = {"firefox", NULL}; 
 static const char *screenshot[] = { "flameshot", "gui", "-p", SCREENSHOTSDIR, NULL };
 static const char *fullscreenshot[] = { "flameshot", "full", "-p", SCREENSHOTSDIR, NULL };
 static const char *delayfullscreenshot[] = { "flameshot", "full", "-p", SCREENSHOTSDIR, "-d", "2000", NULL };
@@ -201,11 +206,9 @@ static Key keys[] = {
     { MODKEY|ShiftMask,               XK_f,   spawn,       {.v = thunarcmd}},
     { MODKEY,                           XK_e,   spawn,       {.v = emacscmd}},
     { MODKEY,                           XK_w,   spawn,       {.v = browser}},
-    { MODKEY,                           XK_x,   spawn,       SHCMD("archlinux-logout")},
     { MODKEY,                           XK_v,   spawn,       SHCMD("pavucontrol")},
-    { MODKEY,                           XK_p,   spawn,       SHCMD("pamac-manager")},
     { MODKEY,                           XK_m,   spawn,       SHCMD("xfce4-settings-manager")},
-    { MODKEY,                           XK_d,   spawn,       {.v = rofi}},
+    { MODKEY,                           XK_d,   spawn,       {.v = dmenucmd}},
     { 0, XF86XK_Calculator,         spawn,                     {.v = calculatorcmd}},
     { 0, XF86XK_WWW,                spawn,                     {.v = browser}},
     { 0, XF86XK_Explorer,           spawn,                     {.v = thunarcmd}},
@@ -304,8 +307,10 @@ static Key keys[] = {
     TAGKEYS(                        XK_8,                      7)
     TAGKEYS(                        XK_9,                      8)
 
-    // kill dwm
-    { MODKEY|ControlMask,               XK_q,       spawn,        SHCMD("killall bar.sh dwm") },
+    // kill dwm/manage desktop
+    { MODKEY|ControlMask,               XK_x,       spawn,        SHCMD("systemctl reboot")},
+    { MODKEY|ShiftMask,               XK_x,       spawn,         SHCMD("systemctl shutdown now")},
+    { MODKEY,                           XK_x,   spawn,       SHCMD("killall bar.sh dwm")},
 
     // kill window
     { MODKEY,                           XK_q,       killclient,     {0} },
