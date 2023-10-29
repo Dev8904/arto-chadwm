@@ -48,8 +48,10 @@ dwm_config=(
 )
 
 echo "Moving files..."
-for FILES in "${dwm_config[@]}"; do
-    move_files "$FILES" 
+for (( i=0; i<${#dwm_config[@]}; i+=2 )); do
+    src="${dwm_config[$i]}"
+    dest="${dwm_config[$i+1]}"
+    move_files "$dest" "$src"
 done
 sleep 5
 echo "Done. Installing..."
