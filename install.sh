@@ -48,7 +48,7 @@ dwm_config=(
   "$installed_dir/root/usr/local/bin/" "/usr/local/bin/"
   "$installed_dir/root/usr/share/backgrounds/" "/usr/share/backgrounds/"
   "$installed_dir/root/usr/share/xsessions/" "/usr/share/xsessions/"
-  "$installed_dir/root/etc/skel/.config/arto-chadwm/" "$HOME/.config/arto-chadwm/"
+  "$installed_dir/root/etc/skel/.config/arto-chadwm/" "~/.config/arto-chadwm/"
 )
 
 echo "Moving files..."
@@ -63,7 +63,7 @@ done
 sleep 5
 echo "Done. Installing..."
 
-cd "$HOME/.config/arto-chadwm/chadwm/"
+cd "~/.config/arto-chadwm/chadwm/"
 sudo make install
 
 echo "Dwm Install finished."
