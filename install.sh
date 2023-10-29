@@ -37,22 +37,24 @@ move_files()
     done
 }
 
-
-#Move configuration files
+# Define source and destination directories without wildcards
 dwm_config=(
-  "$installed_dir/root/usr/bin/"* "/usr/bin/"
-  "$installed_dir/root/usr/local/bin/"* "/usr/local/bin/"
-  "$installed_dir/root/usr/share/backgrounds/"* "/usr/share/backgrounds/"
-  "$installed_dir/root/usr/share/xsessions/"* "/usr/share/xsessions/"
-  "$installed_dir/root/etc/skel/.config/arto-chadwm/"* "$HOME/.config/"
+  "$installed_dir/root/usr/bin/" "/usr/bin/"
+  "$installed_dir/root/usr/local/bin/" "/usr/local/bin/"
+  "$installed_dir/root/usr/share/backgrounds/" "/usr/share/backgrounds/"
+  "$installed_dir/root/usr/share/xsessions/" "/usr/share/xsessions/"
+  "$installed_dir/root/etc/skel/.config/arto-chadwm/" "$HOME/.config/"
 )
 
 echo "Moving files..."
 for (( i=0; i<${#dwm_config[@]}; i+=2 )); do
-    src="${dwm_config[$i]}"
-    dest="${dwm_config[$i+1]}"
-    move_files "$dest" "$src"
+    src_dir="${dwm_config[$i]}"
+    dest_dir="${dwm_config[$i+1]}"
+    for src_file in "$src_dir"*; do
+        move_files "$dest_dir" "$src_file"
+    done
 done
+
 sleep 5
 echo "Done. Installing..."
 
