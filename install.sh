@@ -10,7 +10,19 @@
 installed_dir=$(dirname "$(readlink -f "$(basename "$(pwd)")")")
 
 #hard coding home
-USER_HOME=$(eval echo ~username)
+if [[ $EUID -eq 0 ]]; then
+    # The script is running as root (e.g., via sudo)
+    if [[ -n $SUDO_USER ]]; then
+        # Get the home directory of the user who invoked sudo
+        USER_HOME=$(eval echo ~$SUDO_USER)
+    else
+        # Fall back to /root if we can't determine a sudo invoker
+        USER_HOME="/root"
+    fi
+else
+    # The script is not running as root
+    USER_HOME="$HOME"
+fi
 
 ##################################################################################################################
 CNT="[\e[1;36mNOTE\e[0m]"
