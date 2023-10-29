@@ -9,6 +9,9 @@
 #Declaring our installed directory
 installed_dir=$(dirname "$(readlink -f "$(basename "$(pwd)")")")
 
+#hard coding home
+USER_HOME=$(eval echo ~username)
+
 ##################################################################################################################
 CNT="[\e[1;36mNOTE\e[0m]"
 COK="[\e[1;32mOK\e[0m]"
@@ -42,7 +45,7 @@ move_files()
     done
 }
 
-# Define source and destination directories without wildcards
+# Define source and destination directories
 dwm_config=(
   "$installed_dir/root/usr/bin/" "/usr/bin/"
   "$installed_dir/root/usr/local/bin/" "/usr/local/bin/"
@@ -63,7 +66,7 @@ done
 sleep 5
 echo "Done. Installing..."
 
-cd "~/.config/arto-chadwm/chadwm/"
+cd "$USER_HOME/.config/arto-chadwm/chadwm/"
 sudo make install
 
 echo "Dwm Install finished."
