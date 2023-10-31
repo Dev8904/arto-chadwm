@@ -23,14 +23,14 @@ function run {
 
 run nm-applet
 run variety
-run "blueberry-tray"
-run "dunst"
-run "lxpolkit"
+run blueberry-tray
+run dunst
+run lxpolkit
 picom -b  --config ~/.config/arto-chadwm/picom/picom.conf &
-run "numlockx on"
-run "volumeicon"
+run numlockx on
+run volumeicon
 emacs --daemon
-run "flameshot"
+run flameshot
 #run "nitrogen --restore"
 #run "conky -c $HOME/.config/arto-chadwm/conky/system-overview"
 #you can set wallpapers in themes as well
