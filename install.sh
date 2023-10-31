@@ -76,6 +76,10 @@ for (( i=0; i<${#dwm_config[@]}; i+=2 )); do
 done
 
 sleep 5
+
+#remove build files
+sudo rm -r -v "$installed_dir/arto-chadwm"
+
 echo "Done. Installing..."
 
 cd "$USER_HOME/.config/arto-chadwm/chadwm/"
