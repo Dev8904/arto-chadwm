@@ -313,8 +313,8 @@ static Key keys[] = {
 
     // kill dwm/manage desktop
     { MODKEY|ControlMask,               XK_x,       spawn,        SHCMD("systemctl reboot")},
-    { MODKEY|ShiftMask,               XK_x,       spawn,         SHCMD("systemctl shutdown now")},
-    { MODKEY,                           XK_x,   spawn,       SHCMD("killall bar.sh dwm")},
+    { MODKEY|ShiftMask,               XK_x,       spawn,         SHCMD("systemctl poweroff")},
+    { MODKEY,                           XK_x,   spawn,       SHCMD("pkill chadwm; pkill -f bar.sh; pkill run.sh")},
 
     // kill window
     { MODKEY,                           XK_q,       killclient,     {0} },
