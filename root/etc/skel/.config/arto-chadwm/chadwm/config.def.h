@@ -32,11 +32,15 @@ static const int horizpadtabo       = 15;
 static const int scalepreview       = 4;
 static const int tag_preview        = 1;        /* 1 means enable, 0 is off */
 static const int colorfultag        = 1;        /* 0 means use SchemeSel for selected non vacant tag */
+static const char dmenufont[]       = "MesloLGS Nerd Font Mono:size=16";
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
-{ 0,                            0x1008ff02, spawn,         SHCMD ("xbacklight -inc 10")},
-{ 0,                            0x1008ff03, spawn,         SHCMD ("xbacklight -dec 10")},
+static const char col_gray1[]       = "#212337";
+static const char col_gray2[]       = "#3B4252";
+static const char col_gray3[]       = "#99c1f1";
+static const char col_gray4[]       = "#abafbf";
+static const char col_cyan[]        = "#6d8dad";
 //static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
 //static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
 static const int new_window_attach_on_end = 0; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
@@ -185,11 +189,13 @@ static const char *buildcmd[] = { "sh", "/usr/local/bin/artolinux-chadwm-build",
 static Key keys[] = {
     // brightness and audio
     /* modifier                         key         function        argument */
-    {0,             XF86XK_MonBrightnessDown,       spawn,          {.v = xd}},
-    {0,             XF86XK_MonBrightnessUp,         spawn,          {.v = xi}},
-    {0,             XF86XK_AudioRaiseVolume,        spawn,          {.v = upvol}},
-    {0,             XF86XK_AudioLowerVolume,        spawn,          {.v = downvol}},
-    {0,             XF86XK_AudioMute,               spawn,          {.v = mutevol}},
+    //{0,             XF86XK_MonBrightnessDown,       spawn,          {.v = xd}},
+    //{0,             XF86XK_MonBrightnessUp,         spawn,          {.v = xi}},
+    //{0,             XF86XK_AudioRaiseVolume,        spawn,          {.v = upvol}},
+    //{0,             XF86XK_AudioLowerVolume,        spawn,          {.v = downvol}},
+   // {0,             XF86XK_AudioMute,               spawn,          {.v = mutevol}},
+    { 0,                            0x1008ff02, spawn,         SHCMD ("xbacklight -inc 10")},
+    { 0,                            0x1008ff03, spawn,         SHCMD ("xbacklight -dec 10")},
 
 //Screenshots
     //{ MODKEY|Mod1Mask,              XK_k,      spawn,          {.v = altkeycmd } },
