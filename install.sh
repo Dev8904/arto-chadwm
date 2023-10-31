@@ -49,10 +49,10 @@ move_files()
         # Determine whether to use sudo based on the destination path
         if [[ "$dest" == "$HOME"* ]]; then
             # Move the source to the destination
-            mv -r -v "$src" "$dest" >> "$INSTLOG" 2> /dev/null &
+            mv -v "$src" "$dest" >> "$INSTLOG" 2> /dev/null &
         else
             # Move the source to the destination using sudo
-            sudo mv -r -v "$src" "$dest" >> "$INSTLOG" 2> /dev/null &
+            sudo mv -v "$src" "$dest" >> "$INSTLOG" 2> /dev/null &
         fi
     done
 }
@@ -63,7 +63,7 @@ dwm_config=(
   "$installed_dir/root/usr/local/bin/" "/usr/local/bin/"
   "$installed_dir/root/usr/share/backgrounds/" "/usr/share/backgrounds/"
   "$installed_dir/root/usr/share/xsessions/" "/usr/share/xsessions/"
-  "$installed_dir/root/etc/skel/.config/arto-chadwm/" "$USER_HOME/.config/arto-chadwm/"
+  "$installed_dir/root/etc/skel/.config/arto-chadwm/" "$USER_HOME/.config/arto-chadwm"
 )
 
 echo "Moving files..."
@@ -78,7 +78,8 @@ done
 sleep 5
 
 #remove build files
-sudo rm -r -v "$installed_dir/arto-chadwm"
+cd ..
+sudo rm -r -v "arto-chadwm/"
 
 echo "Done. Installing..."
 
