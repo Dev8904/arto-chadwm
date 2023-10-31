@@ -5,10 +5,9 @@ xbacklight -set 4
 #xset r rate 200 50 &
 
 function run {
- if ! pgrep $1 ;
-  then
-    $@&
-  fi
+    if ! pgrep -x "$1" > /dev/null; then
+        "$@" &
+    fi
 }
 #run "dex $HOME/.config/autostart/artolinux-welcome-app.desktop"
 #run xrandr --output Virtual1 --primary --mode 2560x1600 --pos 0x0 --rotate normal --output Virtual2 --off --output Virtual3 --off --output Virtual4 --off --output Virtual5 --off --output Virtual6 --off --output Virtual7 --off --output Virtual8 --off
@@ -22,8 +21,8 @@ function run {
 #run xrandr --output HDMI2 --right-of HDMI1 --auto
 #autorandr horizontal
 
-run "nm-applet"
-run "variety"
+run nm-applet
+run variety
 run "blueberry-tray"
 run "dunst"
 run "lxpolkit"
