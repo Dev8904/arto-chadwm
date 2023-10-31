@@ -32,10 +32,7 @@ static const int horizpadtabo       = 15;
 static const int scalepreview       = 4;
 static const int tag_preview        = 1;        /* 1 means enable, 0 is off */
 static const int colorfultag        = 1;        /* 0 means use SchemeSel for selected non vacant tag */
-static const char dmenufont[]       = "MesloLGS Nerd Font Mono:size=16";
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+static const char dmenufont[]       = "JetBrainsMono Nerd Font:style:medium:size=14";
 static const char col_gray1[]       = "#212337";
 static const char col_gray2[]       = "#3B4252";
 static const char col_gray3[]       = "#99c1f1";
@@ -178,6 +175,9 @@ static const char *fullscreenshot[] = { "flameshot", "full", "-p", SCREENSHOTSDI
 static const char *delayfullscreenshot[] = { "flameshot", "full", "-p", SCREENSHOTSDIR, "-d", "2000", NULL };
 static const char *calculatorcmd[] = { "galculator",  NULL };
 static const char *thunarcmd[] = { "thunar",  NULL };
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 static const char *pausplaycmd[] = { "playerctl", "play-pause", NULL };
 static const char *stopplaycmd[] = { "playerctl", "stop", NULL };
 static const char *nextplaycmd[] = { "playerctl", "next", NULL };
@@ -193,7 +193,7 @@ static Key keys[] = {
     //{0,             XF86XK_MonBrightnessUp,         spawn,          {.v = xi}},
     //{0,             XF86XK_AudioRaiseVolume,        spawn,          {.v = upvol}},
     //{0,             XF86XK_AudioLowerVolume,        spawn,          {.v = downvol}},
-   // {0,             XF86XK_AudioMute,               spawn,          {.v = mutevol}},
+    //{0,             XF86XK_AudioMute,               spawn,          {.v = mutevol}},
     { 0,                            0x1008ff02, spawn,         SHCMD ("xbacklight -inc 10")},
     { 0,                            0x1008ff03, spawn,         SHCMD ("xbacklight -dec 10")},
 
@@ -204,8 +204,6 @@ static Key keys[] = {
     { MODKEY,                       XK_Print,  spawn,          {.v = screenshot } },
     { 0,                            XK_Print,  spawn,          {.v = fullscreenshot } },
     { Mod1Mask,                     XK_Print,  spawn,          {.v = delayfullscreenshot } },
-    {0, XF86XK_MonBrightnessDown,              spawn,          {.v = xd}},
-    {0, XF86XK_MonBrightnessUp,                spawn,          {.v = xi}},
    
     // launch applications
     { MODKEY,                           XK_t,   spawn,       {.v = termcmd}},
@@ -220,10 +218,10 @@ static Key keys[] = {
     { 0, XF86XK_Explorer,           spawn,                     {.v = thunarcmd}},
 
     //Audio keybinds
-    { 0, XF86XK_AudioMute,          spawn,                     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
+    { 0, XF86XK_AudioMute,          spawn,                     {.v = mutevol}},
     { 0, XF86XK_AudioMicMute,       spawn,                     SHCMD("pactl set-source-mute @DEFAULT_SINK@ toggle") },
-    { 0, XF86XK_AudioRaiseVolume,   spawn,                     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%") },
-    { 0, XF86XK_AudioLowerVolume,   spawn,                     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%") },
+    { 0, XF86XK_AudioRaiseVolume,   spawn,                     {.v = upvol}},
+    { 0, XF86XK_AudioLowerVolume,   spawn,                     {.v = downvol}},
     { 0, XF86XK_AudioPlay,          spawn,                     {.v = pausplaycmd} },
     { 0, XF86XK_AudioStop,          spawn,                     {.v = stopplaycmd} },
     { 0, XF86XK_AudioPrev,          spawn,                     {.v = prevplaycmd} },
