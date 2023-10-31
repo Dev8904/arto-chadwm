@@ -49,10 +49,10 @@ move_files()
         # Determine whether to use sudo based on the destination path
         if [[ "$dest" == "$HOME"* ]]; then
             # Move the source to the destination
-            mv -v "$src" "$dest" >> "$INSTLOG" 2> /dev/null &
+            mv -r -v "$src" "$dest" >> "$INSTLOG" 2> /dev/null &
         else
             # Move the source to the destination using sudo
-            sudo mv -v "$src" "$dest" >> "$INSTLOG" 2> /dev/null &
+            sudo mv -r -v "$src" "$dest" >> "$INSTLOG" 2> /dev/null &
         fi
     done
 }
