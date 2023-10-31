@@ -16,8 +16,8 @@ if [[ $EUID -eq 0 ]]; then
         # Get the home directory of the user who invoked sudo
         USER_HOME=$(eval echo ~$SUDO_USER)
     else
-        # Fall back to /root if we can't determine a sudo invoker
-        USER_HOME="/root"
+        # Fall back to /scriptdump if we can't determine a sudo invoker
+        echo "Please run the script as sudo."
     fi
 else
     # The script is not running as root
