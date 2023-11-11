@@ -30,8 +30,7 @@ https://user-images.githubusercontent.com/59060246/128050994-17f46934-6604-4430-
 ## Other requirements
 - picom
 - feh
-- acpi
-- rofi
+- acpi 
 
 # Install
 
@@ -93,8 +92,6 @@ sudo make install
 # Change themes
 
 - Bar  : in bar.sh (line 9) and config.def.h (line 35)
-- eww  : in eww.scss (line 1)
-- rofi : in config.rasi (line 15)
 
 # Eww
 

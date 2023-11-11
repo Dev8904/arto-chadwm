@@ -166,7 +166,6 @@ static const Layout layouts[] = {
 static const char *termcmd[]  = { TERMINAL, NULL };
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-//static const char *rofi[] = {"rofi", "-no-config", "-no-lazy-grab", "-show", "drun", "-modi", "drun", "-theme", "~/.config/arto-chadwm/rofi/launcher2.rasi", NULL};
 //static const char *xi[] = {"brightnessctl", "set", "+5%", NULL};
 //static const char *xd[] = {"brightnessctl", "set", "5%-", NULL};
 static const char *browser[] = {"firefox", NULL}; 

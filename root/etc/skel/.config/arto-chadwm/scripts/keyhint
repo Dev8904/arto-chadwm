@@ -1,2 +1,2 @@
 #!/bin/sh
-alacritty -e micro ~/.config/arto-chadwm/cheatsheet.md
+kitty -e micro ~/.config/arto-chadwm/cheatsheet.md
