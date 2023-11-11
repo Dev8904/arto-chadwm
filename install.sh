@@ -86,6 +86,12 @@ echo "Done. Installing..."
 cd "$USER_HOME/.config/arto-chadwm/chadwm/"
 sudo make install
 
+cd "$USER_HOME/.config/arto-chadwm/dmenu/"
+sudo make install
+
+cd "$USER_HOME/.config/arto-chadwm/st/"
+sudo make install
+
 echo "Dwm Install finished."
 
 
