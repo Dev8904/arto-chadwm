@@ -2,8 +2,8 @@
 
 #include <X11/XF86keysym.h>
 
-#define TERMINAL "kitty"
-#define TERMCLASS "Kitty"
+#define TERMINAL "st"
+#define TERMCLASS "st"
 #define SCREENSHOTSDIR "/home/jonathan/Pictures/Screenshots"
 
 /* appearance */
