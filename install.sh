@@ -24,6 +24,20 @@ else
     USER_HOME="$HOME"
 fi
 
+  ## Check Package Handeler
+    PACKAGEMANAGER='apt pacman'
+    for pgm in ${PACKAGEMANAGER}; do
+        if command_exists ${pgm}; then
+            PACKAGER=${pgm}
+            echo -e "Using ${pgm}"
+        fi
+    done
+
+    if [ -z "${PACKAGER}" ]; then
+        echo -e "${CER}Can't find a supported package manager"
+        exit 1
+    fi
+
 ##################################################################################################################
 CNT="[\e[1;36mNOTE\e[0m]"
 COK="[\e[1;32mOK\e[0m]"
@@ -66,6 +80,13 @@ dwm_config=(
   "$installed_dir/root/etc/skel/.config/arto-chadwm/" "$USER_HOME/.config/arto-chadwm"
 )
 
+#install dependencies
+    if [[ $PACKAGER == "pacman" ]]; then
+    	yay --noconfirm -S dunst nm-tray bluez blueman numlockx lxpolkit
+    else 
+    	sudo ${PACKAGER} install -yq dunst nm-tray bluez blueman numlockx lxpolkit
+    fi
+
 echo "Moving files..."
 for (( i=0; i<${#dwm_config[@]}; i+=2 )); do
     src_dir="${dwm_config[$i]}"
@@ -77,9 +98,12 @@ done
 
 sleep 5
 
-#remove build files
-cd ..
-sudo rm -r -v "arto-chadwm/"
+echo "Downloading dwm dependencies"
+#dmenu
+git clone https://git.suckless.org/dmenu $USER_HOME/.config/arto-chadwm/
+
+#st
+git clone https://git.suckless.org/st $USER_HOME/.config/arto-chadwm/
 
 echo "Done. Installing..."
 
@@ -91,6 +115,10 @@ sudo make install
 
 cd "$USER_HOME/.config/arto-chadwm/st/"
 sudo make install
+
+#remove build files
+cd ..
+sudo rm -r -v "arto-chadwm/"
 
 echo "Dwm Install finished."
 

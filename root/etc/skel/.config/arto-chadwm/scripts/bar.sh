@@ -15,16 +15,6 @@ cpu() {
   printf "^c$white^ ^b$black^ $cpu_val"
 }
 
-pkg_updates() {
-  updates=$(checkupdates | wc -l)   # arch
-
-  if [ -z "$updates" ]; then
-    printf "  ^c$green^    Fully Updated"
-  else
-    printf "  ^c$green^    $updates"" updates"
-  fi
-}
-
 battery() {
   get_capacity="$(cat /sys/class/power_supply/BAT0/capacity)"
   printf "^c$blue^   $get_capacity"
@@ -72,8 +62,8 @@ dwm_audio () {
 
 while true; do
 
-  [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && updates=$(pkg_updates)
+  [ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && 
   interval=$((interval + 1))
 
-  sleep 2 && xsetroot -name "$updates $(dwm_audio) $(battery) $(brightness) $(cpu) $(mem) $(wlan) $(clock)"
+  sleep 2 && xsetroot -name "$(dwm_audio) $(battery) $(brightness) $(cpu) $(mem) $(wlan) $(clock)"
 done

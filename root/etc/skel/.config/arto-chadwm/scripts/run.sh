@@ -21,14 +21,13 @@ function run {
 #run xrandr --output HDMI2 --right-of HDMI1 --auto
 #autorandr horizontal
 
-run nm-applet
+run nm-tray
 run variety
-run blueberry-tray
+run blueman-tray
 run dunst
 run lxpolkit
 picom -b  --config ~/.config/arto-chadwm/picom/picom.conf &
 run numlockx on
-run volumeicon
 emacs --daemon
 run flameshot
 #run "nitrogen --restore"
